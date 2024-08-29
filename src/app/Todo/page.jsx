@@ -1,4 +1,5 @@
 "use client";
+import { list } from "postcss";
 import React, { useState, useEffect } from "react";
 
 const Todo = () => {
@@ -14,7 +15,12 @@ const Todo = () => {
     const todo=todos[index]
     console.log(todo)
     setInput(todo)
-    
+  }
+
+  const deleteTodo=(index)=>{
+    const deleteTodo=([...todos])
+    deleteTodo.splice(index,1)
+    setTodos(deleteTodo)
   }
 
   return (
@@ -60,6 +66,9 @@ const Todo = () => {
             </li>
           ))}
         </ul>
+        <div className=" flex justify-center items-center mt-4">
+            <button className=" bg-gray-800 p-2 w-40 rounded-md hover:bg-gray-900 transition duration-200 text-white" onClick={() => setTodos([])} >Delete All</button>
+        </div>
       </div>
     </div>
   );
